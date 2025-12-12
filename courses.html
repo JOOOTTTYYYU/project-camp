@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курсы - Skystep</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 md:px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center transform transition-all duration-300 group-hover:rotate-12 group-hover:scale-110 shadow-lg overflow-hidden bg-white">
+                        <img src="images/logo.jpg" alt="Skystep Logo" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-2xl font-bold text-slate-700">Skystep</span>
+                </a>
+                <nav class="hidden lg:flex items-center space-x-8">
+                        <a href="index.html" class="nav-link text-gray-700 hover:text-purple-600 transition-all duration-300 font-medium relative group">
+                        Главная
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="courses.html" class="nav-link text-slate-700 font-semibold relative group">
+                        Курсы
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></span>
+                    </a>
+                    <a href="index.html#about" class="nav-link text-gray-700 hover:text-purple-600 transition-all duration-300 font-medium relative group">
+                        О проекте
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </nav>
+                <div class="flex items-center space-x-3">
+                    <button onclick="openAuthModal()" class="px-6 py-2 text-gray-700 font-semibold hover:text-gray-900 rounded-lg transition-all duration-300 relative group">
+                        Войти
+                        <span class="absolute inset-0 rounded-lg bg-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </button>
+                </div>
+                <button class="lg:hidden text-gray-700" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        </div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-6xl md:text-7xl font-black mb-6 fade-in-up">Каталог курсов</h1>
+            <p class="text-xl md:text-2xl opacity-90 fade-in-up max-w-2xl mx-auto" style="animation-delay: 0.2s">
+                Выберите курс и начните обучение прямо сейчас
+            </p>
+        </div>
+    </section>
+
+    <section class="py-10 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-wrap gap-4 justify-center">
+                <select id="filter-subject" class="filter-select px-6 py-3 bg-gray-900/90 backdrop-blur-md border border-white/20 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                    <option value="all">Все предметы</option>
+                    <option value="Математика">Математика</option>
+                    <option value="Физика">Физика</option>
+                    <option value="История">История</option>
+                    <option value="Русский язык">Русский язык</option>
+                    <option value="Химия">Химия</option>
+                    <option value="Биология">Биология</option>
+                </select>
+                <select id="filter-class" class="filter-select px-6 py-3 bg-gray-900/90 backdrop-blur-md border border-white/20 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                    <option value="all">Все классы</option>
+                    <option value="5">5 класс</option>
+                    <option value="6">6 класс</option>
+                    <option value="7">7 класс</option>
+                    <option value="8">8 класс</option>
+                    <option value="9">9 класс</option>
+                    <option value="10">10 класс</option>
+                    <option value="11">11 класс</option>
+                </select>
+                <button onclick="filterCourses()" class="btn-primary px-8 py-3 rounded-xl font-semibold">
+                    <i class="fas fa-filter mr-2"></i>
+                    Применить фильтры
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main class="py-16 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
+        </div>
+        <div class="container mx-auto relative z-10">
+            <div id="courses-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="course-card scroll-reveal" data-subject="Математика" data-class="10">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="images/математика скай.jpg" 
+                             alt="Алгебра" 
+                             class="course-card-image w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 z-10">
+                            <span class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">Математика</span>
+                        </div>
+                        <div class="absolute top-4 right-4 z-10">
+                            <span class="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-semibold border border-white/30">10 класс</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6 relative z-10">
+                        <h3 class="text-xl font-bold mb-2 text-slate-700">Алгебра и начала анализа</h3>
+                        <p class="text-gray-600 text-sm mb-4">Изучение функций, производных и интегралов</p>
+                        <div class="flex items-center justify-between mb-6 text-sm text-gray-600">
+                            <div class="flex items-center">
+                                <i class="fas fa-user mr-2"></i>
+                                <span>Петрова М.А.</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users mr-2"></i>
+                                <span>245</span>
+                            </div>
+                        </div>
+                        <button onclick="openAuthModal()" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                            Начать курс
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg scroll-reveal" data-subject="Физика" data-class="10">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="images/Механика скай.jpg" 
+                             alt="Физика" 
+                             class="course-card-image w-full h-full object-cover">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-semibold">Физика</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">10 класс</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Механика и термодинамика</h3>
+                        <p class="text-gray-600 text-sm mb-4">Основы классической механики и термодинамики</p>
+                        <div class="flex items-center justify-between mb-4 text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <i class="fas fa-user mr-2"></i>
+                                <span>Сидоров Д.В.</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users mr-2"></i>
+                                <span>189</span>
+                            </div>
+                        </div>
+                        <button onclick="openAuthModal()" class="w-full bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-900 hover:to-black text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                            Начать курс
+                        </button>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg scroll-reveal" data-subject="История" data-class="10">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="images/история скай.jpg" 
+                             alt="История" 
+                             class="course-card-image w-full h-full object-cover">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold">История</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">10 класс</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">История России</h3>
+                        <p class="text-gray-600 text-sm mb-4">Россия в XIX-XX веках</p>
+                        <div class="flex items-center justify-between mb-4 text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <i class="fas fa-user mr-2"></i>
+                                <span>Козлова Е.С.</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users mr-2"></i>
+                                <span>312</span>
+                            </div>
+                        </div>
+                        <button onclick="openAuthModal()" class="w-full bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-900 hover:to-black text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                            Начать курс
+                        </button>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg scroll-reveal" data-subject="Русский язык" data-class="9">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="images/русский скай.jpg" 
+                             alt="Русский язык" 
+                             class="course-card-image w-full h-full object-cover">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold">Русский язык</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">9 класс</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Подготовка к ОГЭ</h3>
+                        <p class="text-gray-600 text-sm mb-4">Комплексная подготовка к основному государственному экзамену</p>
+                        <div class="flex items-center justify-between mb-4 text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <i class="fas fa-user mr-2"></i>
+                                <span>Иванова С.П.</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users mr-2"></i>
+                                <span>428</span>
+                            </div>
+                        </div>
+                        <button onclick="openAuthModal()" class="w-full bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-900 hover:to-black text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                            Начать курс
+                        </button>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg scroll-reveal" data-subject="Химия" data-class="11">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="images/химия скай.jpg" 
+                             alt="Химия" 
+                             class="course-card-image w-full h-full object-cover">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-yellow-600 text-white px-4 py-2 rounded-full text-sm font-semibold">Химия</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">11 класс</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Органическая химия</h3>
+                        <p class="text-gray-600 text-sm mb-4">Углеводороды, спирты, альдегиды и кетоны</p>
+                        <div class="flex items-center justify-between mb-4 text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <i class="fas fa-user mr-2"></i>
+                                <span>Васильев А.И.</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users mr-2"></i>
+                                <span>167</span>
+                            </div>
+                        </div>
+                        <button onclick="openAuthModal()" class="w-full bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-900 hover:to-black text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                            Начать курс
+                        </button>
+                    </div>
+                </div>
+
+                <div class="course-card bg-white rounded-2xl overflow-hidden shadow-lg scroll-reveal" data-subject="Биология" data-class="11">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="images/биология скай.jpg" 
+                             alt="Биология" 
+                             class="course-card-image w-full h-full object-cover">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-teal-600 text-white px-4 py-2 rounded-full text-sm font-semibold">Биология</span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-white text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">11 класс</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Генетика и эволюция</h3>
+                        <p class="text-gray-600 text-sm mb-4">Основы генетики, селекции и теории эволюции</p>
+                        <div class="flex items-center justify-between mb-4 text-sm text-gray-500">
+                            <div class="flex items-center">
+                                <i class="fas fa-user mr-2"></i>
+                                <span>Морозова Л.В.</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users mr-2"></i>
+                                <span>203</span>
+                            </div>
+                        </div>
+                        <button onclick="openAuthModal()" class="w-full bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-900 hover:to-black text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                            Начать курс
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-50 text-gray-800 py-16 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
+        </div>
+        <div class="container mx-auto relative z-10">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg overflow-hidden bg-white">
+                            <img src="images/logo.jpg" alt="Skystep Logo" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-3xl font-black text-gray-800">Skystep</span>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">Образовательная платформа для эффективного обучения</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-gray-800">Навигация</h4>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li><a href="index.html" class="hover:text-blue-600 transition-colors">Главная</a></li>
+                        <li><a href="courses.html" class="hover:text-blue-600 transition-colors">Курсы</a></li>
+                        <li><a href="index.html#about" class="hover:text-blue-600 transition-colors">О проекте</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-gray-800">Контакты</h4>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li><i class="fas fa-envelope mr-2 text-purple-600"></i>info@skystep.ru</li>
+                        <li><i class="fas fa-phone mr-2 text-purple-600"></i>+7 (999) 123-45-67</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-gray-800">Социальные сети</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl flex items-center justify-center hover:scale-110 transition-transform shadow-lg"><i class="fab fa-vk text-xl text-white"></i></a>
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 rounded-xl flex items-center justify-center hover:scale-110 transition-transform shadow-lg"><i class="fab fa-telegram text-xl text-white"></i></a>
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl flex items-center justify-center hover:scale-110 transition-transform shadow-lg"><i class="fab fa-youtube text-xl text-white"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-blue-200 pt-8 text-center">
+                <p class="text-gray-600 text-sm">&copy; 2024 Skystep. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="auth-modal" class="fixed inset-0 z-50 items-center justify-center backdrop-blur-md" style="display: none;">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full mx-4 p-10 relative">
+            <button onclick="closeAuthModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg overflow-hidden bg-white">
+                    <img src="logo.jpg" alt="Skystep Logo" class="w-full h-full object-cover">
+                </div>
+                <h2 class="text-3xl font-black mb-4 text-gray-800">Вход / Регистрация</h2>
+                <p class="text-gray-600">Ждите в будущем)</p>
+            </div>
+            <button onclick="closeAuthModal()" class="w-full btn-primary py-4 rounded-xl font-bold text-lg">
+                Понятно
+            </button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        function openAuthModal() {
+            document.getElementById('auth-modal').style.display = 'flex';
+        }
+        function closeAuthModal() {
+            document.getElementById('auth-modal').style.display = 'none';
+        }
+        
+        function filterCourses() {
+            const subject = document.getElementById('filter-subject').value;
+            const classNum = document.getElementById('filter-class').value;
+            const courses = document.querySelectorAll('.course-card');
+            
+            courses.forEach(course => {
+                const courseSubject = course.dataset.subject || '';
+                const courseClass = course.dataset.class || '';
+                
+                let show = true;
+                
+                if (subject !== 'all' && courseSubject !== subject) {
+                    show = false;
+                }
+                if (classNum !== 'all' && courseClass !== classNum) {
+                    show = false;
+                }
+                
+                if (show) {
+                    course.style.display = 'block';
+                    course.classList.remove('hidden');
+                } else {
+                    course.style.display = 'none';
+                    course.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
