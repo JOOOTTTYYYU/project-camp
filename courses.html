@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Темы - Skystep</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 md:px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center transform transition-all duration-300 group-hover:rotate-12 group-hover:scale-110 shadow-lg overflow-hidden bg-white">
+                        <img src="/images/logo.jpg" alt="Skystep Logo" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-2xl font-bold text-slate-700">Skystep</span>
+                </a>
+                <nav class="hidden lg:flex items-center space-x-8">
+                        <a href="index.html" class="nav-link text-gray-700 hover:text-purple-600 transition-all duration-300 font-medium relative group">
+                        Главная
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="courses.html" class="nav-link text-slate-700 font-semibold relative group">
+                        Темы
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></span>
+                    </a>
+                    <a href="index.html#about" class="nav-link text-gray-700 hover:text-purple-600 transition-all duration-300 font-medium relative group">
+                        О проекте
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </nav>
+                <div class="flex items-center space-x-3">
+                    <button onclick="openAuthModal()" class="px-6 py-2 text-gray-700 font-semibold hover:text-gray-900 rounded-lg transition-all duration-300 relative group">
+                        Войти
+                        <span class="absolute inset-0 rounded-lg bg-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </button>
+                </div>
+                <button class="lg:hidden text-gray-700 z-50 relative" id="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl" id="mobile-menu-icon"></i>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
+                <nav class="flex flex-col py-4 px-4">
+                    <a href="index.html" class="px-4 py-3 text-slate-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-all">
+                        Главная
+                    </a>
+                    <a href="courses.html" class="px-4 py-3 text-slate-700 font-semibold hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-all">
+                        Темы
+                    </a>
+                    <a href="index.html#about" class="px-4 py-3 text-slate-600 hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-all">
+                        О проекте
+                    </a>
+                    <div class="border-t border-gray-200 my-2"></div>
+                    <button onclick="openAuthModal(); toggleMobileMenu();" class="px-4 py-3 text-left text-gray-700 font-semibold hover:bg-purple-50 hover:text-purple-600 rounded-lg transition-all">
+                        Войти
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        </div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-6xl md:text-7xl font-black mb-6 fade-in-up">Каталог тем</h1>
+            <p class="text-xl md:text-2xl opacity-90 fade-in-up max-w-2xl mx-auto" style="animation-delay: 0.2s">
+                Изучите тему полностью: алгоритм, пример, правило, ошибки и тренировка
+            </p>
+        </div>
+    </section>
+
+    <section class="py-10 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-wrap gap-4 justify-center">
+                <select id="filter-subject" class="filter-select px-6 py-3 bg-gray-900/90 backdrop-blur-md border border-white/20 rounded-xl text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                    <option value="all">Все предметы</option>
+                    <option value="Математика">Математика</option>
+                    <option value="Физика">Физика</option>
+                    <option value="История">История</option>
+                    <option value="Русский язык">Русский язык</option>
+                    <option value="Химия">Химия</option>
+                    <option value="Биология">Биология</option>
+                </select>
+                <button onclick="filterCourses()" class="btn-primary px-8 py-3 rounded-xl font-semibold">
+                    <i class="fas fa-filter mr-2"></i>
+                    Применить фильтр
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main class="py-16 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
+        </div>
+        <div class="container mx-auto relative z-10">
+            <div id="topics-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="topic-card scroll-reveal bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" data-subject="Математика" data-category="Математика" data-title="Производная функции" onclick="openTopicModal(this)">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="/images/математика скай.jpg" 
+                             alt="Математика" 
+                             class="topic-card-image w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 z-10">
+                            <span class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">Математика</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-slate-700">Производная функции</h3>
+                        <p class="text-gray-600 text-sm mb-4">Изучение производных и их применение</p>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                            Открыть тему
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        
+                        <div class="topic-content hidden">
+                            <div class="topic-block">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-list-ol text-blue-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Алгоритм решения</h4>
+                                </div>
+                                <ol class="list-decimal list-inside space-y-1 text-gray-600 ml-6">
+                                    <li>Найти область определения функции</li>
+                                    <li>Применить правила дифференцирования</li>
+                                    <li>Упростить полученное выражение</li>
+                                    <li>Проверить результат</li>
+                                </ol>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-lightbulb text-purple-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Пример</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">Найти производную: f(x) = x² + 3x - 5</p>
+                                <p class="text-gray-600 ml-6 mt-1">f'(x) = 2x + 3</p>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-book text-indigo-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Правило</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">Производная суммы равна сумме производных. (xⁿ)' = nxⁿ⁻¹</p>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-exclamation-triangle text-red-500 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Типовые ошибки</h4>
+                                </div>
+                                <ul class="list-disc list-inside space-y-1 text-gray-600 ml-6">
+                                    <li>Забывают про константу при дифференцировании</li>
+                                    <li>Неправильно применяют правило степени</li>
+                                    <li>Путают производную произведения и суммы</li>
+                                </ul>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-dumbbell text-green-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Тренировка</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">1) f(x) = 5x³ 2) f(x) = 2x² - 4x 3) f(x) = x⁴ + 7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card scroll-reveal bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" data-subject="Физика" data-category="Физика" data-title="Законы Ньютона" onclick="openTopicModal(this)">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="/images/Механика скай.jpg" 
+                             alt="Физика" 
+                             class="topic-card-image w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 z-10">
+                            <span class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">Физика</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-slate-700">Законы Ньютона</h3>
+                        <p class="text-gray-600 text-sm mb-4">Основы классической механики</p>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                            Открыть тему
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        
+                        <div class="topic-content hidden">
+                            <div class="space-y-4 text-sm">
+                                <div class="topic-block">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-list-ol text-blue-600 mr-2"></i>
+                                        <h4 class="font-semibold text-slate-700">Алгоритм решения</h4>
+                                    </div>
+                                    <ol class="list-decimal list-inside space-y-1 text-gray-600 ml-6">
+                                        <li>Выбрать систему отсчёта</li>
+                                        <li>Изобразить все силы, действующие на тело</li>
+                                        <li>Записать второй закон Ньютона: F = ma</li>
+                                        <li>Решить полученное уравнение</li>
+                                    </ol>
+                                </div>
+                                <div class="topic-block border-t pt-3">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-lightbulb text-purple-600 mr-2"></i>
+                                        <h4 class="font-semibold text-slate-700">Пример</h4>
+                                    </div>
+                                    <p class="text-gray-600 ml-6">Тело массой 2 кг движется с ускорением 3 м/с². Найти силу.</p>
+                                    <p class="text-gray-600 ml-6 mt-1">F = ma = 2 × 3 = 6 Н</p>
+                                </div>
+                                <div class="topic-block border-t pt-3">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-book text-indigo-600 mr-2"></i>
+                                        <h4 class="font-semibold text-slate-700">Правило</h4>
+                                    </div>
+                                    <p class="text-gray-600 ml-6">Второй закон: F = ma. Ускорение направлено в сторону равнодействующей силы.</p>
+                                </div>
+                                <div class="topic-block border-t pt-3">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-exclamation-triangle text-red-500 mr-2"></i>
+                                        <h4 class="font-semibold text-slate-700">Типовые ошибки</h4>
+                                    </div>
+                                    <ul class="list-disc list-inside space-y-1 text-gray-600 ml-6">
+                                        <li>Не учитывают все силы (трение, сопротивление)</li>
+                                        <li>Путают массу и вес</li>
+                                        <li>Неправильно определяют направление ускорения</li>
+                                    </ul>
+                                </div>
+                                <div class="topic-block border-t pt-3">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fas fa-dumbbell text-green-600 mr-2"></i>
+                                        <h4 class="font-semibold text-slate-700">Тренировка</h4>
+                                    </div>
+                                    <p class="text-gray-600 ml-6">1) m=5кг, a=2м/с² → F? 2) F=20Н, m=4кг → a? 3) Найти силу трения</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card scroll-reveal bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" data-subject="История" data-category="История" data-title="Россия в XIX веке" onclick="openTopicModal(this)">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="/images/история скай.jpg" 
+                             alt="История" 
+                             class="topic-card-image w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 z-10">
+                            <span class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">История</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-slate-700">Россия в XIX веке</h3>
+                        <p class="text-gray-600 text-sm mb-4">Россия в XIX-XX веках</p>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                            Открыть тему
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        
+                        <div class="topic-content hidden">
+                            <div class="topic-block">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-list-ol text-blue-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Алгоритм изучения</h4>
+                                </div>
+                                <ol class="list-decimal list-inside space-y-1 text-gray-600 ml-6">
+                                    <li>Определить хронологические рамки периода</li>
+                                    <li>Выделить ключевые события и реформы</li>
+                                    <li>Установить причинно-следственные связи</li>
+                                    <li>Проанализировать последствия</li>
+                                </ol>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-lightbulb text-purple-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Пример</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">Отмена крепостного права (1861): причина — экономическая отсталость, следствие — начало капиталистических отношений.</p>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-book text-indigo-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Правило</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">XIX век — эпоха реформ и модернизации России. Ключевые даты: 1801-1825 (Александр I), 1861 (отмена крепостного права).</p>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-exclamation-triangle text-red-500 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Типовые ошибки</h4>
+                                </div>
+                                <ul class="list-disc list-inside space-y-1 text-gray-600 ml-6">
+                                    <li>Путают даты реформ и правления императоров</li>
+                                    <li>Не различают причины и следствия событий</li>
+                                    <li>Забывают про социально-экономический контекст</li>
+                                </ul>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-dumbbell text-green-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Тренировка</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">1) Когда отменили крепостное право? 2) Назовите реформы Александра II 3) Причины Крымской войны</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card scroll-reveal bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" data-subject="Русский язык" data-category="Русский язык" data-title="Правописание Н/НН" onclick="openTopicModal(this)">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="/images/русский скай.jpg" 
+                             alt="Русский язык" 
+                             class="topic-card-image w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 z-10">
+                            <span class="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">Русский язык</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-slate-700">Правописание Н/НН</h3>
+                        <p class="text-gray-600 text-sm mb-4">Правила написания Н и НН</p>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                            Открыть тему
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        
+                        <div class="topic-content hidden">
+                            <div class="topic-block">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-list-ol text-blue-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Алгоритм решения</h4>
+                                </div>
+                                <ol class="list-decimal list-inside space-y-1 text-gray-600 ml-6">
+                                    <li>Определить часть речи</li>
+                                    <li>Проверить наличие зависимых слов</li>
+                                    <li>Проверить суффиксы -ова-, -ева-</li>
+                                    <li>Применить правило Н/НН</li>
+                                </ol>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-lightbulb text-purple-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Пример</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">Жареный картофель (без зависимых слов) → Н</p>
+                                <p class="text-gray-600 ml-6 mt-1">Жаренный мамой картофель (есть зависимое слово) → НН</p>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-book text-indigo-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Правило</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">В причастиях НН, если есть зависимое слово или приставка. В прилагательных Н, если нет зависимых слов.</p>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-exclamation-triangle text-red-500 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Типовые ошибки</h4>
+                                </div>
+                                <ul class="list-disc list-inside space-y-1 text-gray-600 ml-6">
+                                    <li>Путают причастия и прилагательные</li>
+                                    <li>Не учитывают зависимые слова</li>
+                                    <li>Забывают про исключения (нежданный, нечаянный)</li>
+                                </ul>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-dumbbell text-green-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Тренировка</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">1) Варен...ый 2) Варен...ая бабушкой 3) Кова...ый меч 4) Кова...ый кузнецом</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card scroll-reveal bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" data-subject="Химия" data-category="Химия" data-title="Углеводороды" onclick="openTopicModal(this)">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="/images/химия скай.jpg" 
+                             alt="Химия" 
+                             class="topic-card-image w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 z-10">
+                            <span class="bg-yellow-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">Химия</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-slate-700">Углеводороды</h3>
+                        <p class="text-gray-600 text-sm mb-4">Органические соединения</p>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                            Открыть тему
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        
+                        <div class="topic-content hidden">
+                            <div class="topic-block">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-list-ol text-blue-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Алгоритм решения</h4>
+                                </div>
+                                <ol class="list-decimal list-inside space-y-1 text-gray-600 ml-6">
+                                    <li>Определить тип углеводорода</li>
+                                    <li>Составить структурную формулу</li>
+                                    <li>Написать уравнение реакции</li>
+                                    <li>Расставить коэффициенты</li>
+                                </ol>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-lightbulb text-purple-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Пример</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">Горение метана: CH₄ + 2O₂ → CO₂ + 2H₂O</p>
+                                <p class="text-gray-600 ml-6 mt-1">Метан — алкан, общая формула CₙH₂ₙ₊₂</p>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-book text-indigo-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Правило</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">Алканы: CₙH₂ₙ₊₂, алкены: CₙH₂ₙ, алкины: CₙH₂ₙ₋₂. Все горят с образованием CO₂ и H₂O.</p>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-exclamation-triangle text-red-500 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Типовые ошибки</h4>
+                                </div>
+                                <ul class="list-disc list-inside space-y-1 text-gray-600 ml-6">
+                                    <li>Путают общие формулы разных классов</li>
+                                    <li>Неправильно расставляют коэффициенты</li>
+                                    <li>Забывают про условия реакций</li>
+                                </ul>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-dumbbell text-green-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Тренировка</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">1) Написать формулу этана 2) Уравнение горения пропана 3) Определить класс C₄H₈</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-card scroll-reveal bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" data-subject="Биология" data-category="Биология" data-title="Законы Менделя" onclick="openTopicModal(this)">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="/images/биология скай.jpg" 
+                             alt="Биология" 
+                             class="topic-card-image w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 z-10">
+                            <span class="bg-teal-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">Биология</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-slate-700">Законы Менделя</h3>
+                        <p class="text-gray-600 text-sm mb-4">Основы генетики</p>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                            Открыть тему
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        
+                        <div class="topic-content hidden">
+                            <div class="topic-block">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-list-ol text-blue-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Алгоритм решения</h4>
+                                </div>
+                                <ol class="list-decimal list-inside space-y-1 text-gray-600 ml-6">
+                                    <li>Определить генотипы родителей</li>
+                                    <li>Составить решётку Пеннета</li>
+                                    <li>Определить генотипы потомков</li>
+                                    <li>Рассчитать соотношение фенотипов</li>
+                                </ol>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-lightbulb text-purple-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Пример</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">Скрещивание АА × аа: все потомки Аа (100% доминантный фенотип)</p>
+                                <p class="text-gray-600 ml-6 mt-1">Скрещивание Аа × Аа: 1:2:1 (АА:Аа:аа)</p>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-book text-indigo-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Правило</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">1-й закон: единообразие гибридов F₁. 2-й закон: расщепление 3:1 в F₂ при моногибридном скрещивании.</p>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-exclamation-triangle text-red-500 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Типовые ошибки</h4>
+                                </div>
+                                <ul class="list-disc list-inside space-y-1 text-gray-600 ml-6">
+                                    <li>Путают генотип и фенотип</li>
+                                    <li>Неправильно составляют решётку Пеннета</li>
+                                    <li>Забывают про неполное доминирование</li>
+                                </ul>
+                            </div>
+                            <div class="topic-block border-t pt-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-dumbbell text-green-600 mr-2"></i>
+                                    <h4 class="font-semibold text-slate-700">Тренировка</h4>
+                                </div>
+                                <p class="text-gray-600 ml-6">1) Аа × Аа → соотношение? 2) АА × аа → фенотипы? 3) Составить решётку для Аа × аа</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-50 text-gray-800 py-16 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
+        </div>
+        <div class="container mx-auto relative z-10">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg overflow-hidden bg-white">
+                            <img src="/images/logo.jpg" alt="Skystep Logo" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-3xl font-black text-gray-800">Skystep</span>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">Образовательная платформа для эффективного обучения</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-gray-800">Навигация</h4>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li><a href="index.html" class="hover:text-blue-600 transition-colors">Главная</a></li>
+                        <li><a href="courses.html" class="hover:text-blue-600 transition-colors">Темы</a></li>
+                        <li><a href="index.html#about" class="hover:text-blue-600 transition-colors">О проекте</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-gray-800">Контакты</h4>
+                    <ul class="space-y-2 text-gray-600 text-sm">
+                        <li><i class="fas fa-envelope mr-2 text-purple-600"></i>info@skystep.ru</li>
+                        <li><i class="fas fa-phone mr-2 text-purple-600"></i>+7 (999) 123-45-67</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-gray-800">Социальные сети</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl flex items-center justify-center hover:scale-110 transition-transform shadow-lg"><i class="fab fa-vk text-xl text-white"></i></a>
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 rounded-xl flex items-center justify-center hover:scale-110 transition-transform shadow-lg"><i class="fab fa-telegram text-xl text-white"></i></a>
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 rounded-xl flex items-center justify-center hover:scale-110 transition-transform shadow-lg"><i class="fab fa-youtube text-xl text-white"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-blue-200 pt-8 text-center">
+                <p class="text-gray-600 text-sm">&copy; 2024 Skystep. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="topic-modal" class="fixed inset-0 z-50 items-center justify-center backdrop-blur-md bg-black/50" style="display: none;">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto relative topic-modal-content">
+            <button onclick="closeTopicModal()" class="fixed top-6 right-6 z-50 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-lg text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div id="topic-modal-body" class="p-8 md:p-12">
+            </div>
+        </div>
+    </div>
+
+    <div id="auth-modal" class="fixed inset-0 z-50 items-center justify-center backdrop-blur-md bg-black/50" style="display: none;">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full mx-4 p-10 relative">
+            <button onclick="closeAuthModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg overflow-hidden bg-white">
+                    <img src="/images/logo.jpg" alt="Skystep Logo" class="w-full h-full object-cover">
+                </div>
+                <h2 class="text-3xl font-black mb-4 text-gray-800">Вход / Регистрация</h2>
+                <p class="text-gray-600">Ждите в будущем)</p>
+            </div>
+            <button onclick="closeAuthModal()" class="w-full btn-primary py-4 rounded-xl font-bold text-lg">
+                Понятно
+            </button>
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script>
+        function openAuthModal() {
+            document.getElementById('auth-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeAuthModal() {
+            document.getElementById('auth-modal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        
+        function openTopicModal(card) {
+            const modal = document.getElementById('topic-modal');
+            const modalBody = document.getElementById('topic-modal-body');
+            const title = card.getAttribute('data-title');
+            const category = card.getAttribute('data-category') || card.getAttribute('data-subject');
+            const content = card.querySelector('.topic-content');
+            
+            if (content) {
+                const image = card.querySelector('.topic-card-image');
+                const imageSrc = image ? image.src : '';
+                
+                modalBody.innerHTML = `
+                    <div class="relative h-64 md:h-80 overflow-hidden rounded-2xl mb-8">
+                        <img src="${imageSrc}" alt="${title}" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 z-10">
+                            <span class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">${category}</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-black mb-8 text-slate-700">${title}</h2>
+                    <div class="space-y-6 text-base">
+                        ${content.innerHTML}
+                    </div>
+                `;
+                
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                if (modal.querySelector('.topic-modal-content')) {
+                    modal.querySelector('.topic-modal-content').style.animation = 'fadeInUp 0.3s ease-out';
+                }
+            }
+        }
+        
+        function closeTopicModal() {
+            const modal = document.getElementById('topic-modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        
+        document.getElementById('topic-modal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTopicModal();
+            }
+        });
+        
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            
+            if (!mobileMenu || !icon) return;
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                mobileMenu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+        
+        function filterCourses() {
+            const subject = document.getElementById('filter-subject').value;
+            const topics = document.querySelectorAll('.topic-card, .course-card');
+            
+            topics.forEach(topic => {
+                const topicSubject = topic.dataset.subject || topic.dataset.category || '';
+                
+                let show = true;
+                
+                if (subject !== 'all' && topicSubject !== subject) {
+                    show = false;
+                }
+                
+                if (show) {
+                    topic.style.display = 'block';
+                    topic.classList.remove('hidden');
+                } else {
+                    topic.style.display = 'none';
+                    topic.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
