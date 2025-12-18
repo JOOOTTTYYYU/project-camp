@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollIndicator();
     initParallax();
     initMobileMenu();
+    initScrollToTop();
     
     setTimeout(() => {
         document.body.classList.add('loaded');
@@ -447,3 +448,24 @@ function toggleMobileMenu() {
         icon.classList.add('fa-bars');
     }
 }
+
+function initScrollToTop() {
+    const scrollButton = document.getElementById('scroll-to-top');
+    if (!scrollButton) return;
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollButton.classList.add('show');
+        } else {
+            scrollButton.classList.remove('show');
+        }
+    });
+}
+
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
