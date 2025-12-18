@@ -72,6 +72,155 @@ header#navbar > div {
     padding-top: 80px;
 }
 
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 60vh;
+        padding-top: 60px;
+        padding-bottom: 2rem;
+    }
+    
+    .hero-section .container {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .hero-content p {
+        font-size: 1rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .hero-section img {
+        display: none;
+    }
+    
+    section {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+    
+    .section-spacing {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+    
+    .feature-card {
+        padding: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .feature-card .w-20 {
+        width: 3rem !important;
+        height: 3rem !important;
+    }
+    
+    .feature-card .text-3xl {
+        font-size: 1.5rem !important;
+    }
+    
+    .feature-card h3 {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .feature-card p {
+        font-size: 0.75rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    .feature-card .mb-6 {
+        margin-bottom: 1rem !important;
+    }
+    
+    .topic-card,
+    .course-card {
+        margin-bottom: 1rem !important;
+    }
+    
+    .topic-card .relative.h-48,
+    .course-card .relative.h-48 {
+        height: 128px !important;
+    }
+    
+    .topic-card .p-6,
+    .course-card .p-6 {
+        padding: 1rem !important;
+    }
+    
+    .topic-card h3,
+    .course-card h3 {
+        font-size: 1.125rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .topic-card p,
+    .course-card p {
+        font-size: 0.875rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .topic-card button,
+    .course-card button {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.875rem !important;
+    }
+    
+    .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    h2 {
+        font-size: 1.75rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.75rem 1.5rem !important;
+        font-size: 0.875rem !important;
+    }
+    
+    .stat-card {
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem !important;
+    }
+    
+    .grid {
+        gap: 1rem !important;
+    }
+    
+    .direction-card {
+        padding: 1rem !important;
+    }
+    
+    .direction-card h3 {
+        font-size: 1rem !important;
+    }
+    
+    .direction-card p {
+        font-size: 0.75rem !important;
+    }
+    
+    footer {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+}
+
 .hero-section img {
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
     animation: float 6s ease-in-out infinite;
@@ -541,7 +690,8 @@ select option {
     }
     
     .features-grid {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
     }
 }
 
