@@ -98,27 +98,27 @@
         </div>
     </section>
 
-    <main class="py-16 px-6 relative overflow-hidden">
+    <main class="py-8 md:py-16 px-4 md:px-6 relative overflow-hidden">
         <div class="absolute inset-0 opacity-5">
             <div class="absolute top-0 left-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
             <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-3xl"></div>
         </div>
         <div class="container mx-auto relative z-10">
-            <div id="topics-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="topics-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                 <div class="topic-card scroll-reveal bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" data-subject="Математика" data-category="Математика" data-title="Производная функции" onclick="openTopicModal(this)">
-                    <div class="relative h-48 overflow-hidden">
+                    <div class="relative h-32 md:h-48 overflow-hidden">
                         <img src="/images/математика скай.jpg" 
                              alt="Математика" 
                              class="topic-card-image w-full h-full object-cover">
-                        <div class="absolute top-4 left-4 z-10">
-                            <span class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">Математика</span>
+                        <div class="absolute top-2 md:top-4 left-2 md:left-4 z-10">
+                            <span class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-2 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm font-semibold shadow-lg">Математика</span>
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-slate-700">Производная функции</h3>
-                        <p class="text-gray-600 text-sm mb-4">Изучение производных и их применение</p>
-                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2 text-slate-700">Производная функции</h3>
+                        <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Изучение производных и их применение</p>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-2 md:py-3 rounded-xl text-sm md:text-base font-semibold hover:shadow-lg transition-all transform hover:scale-105">
                             Открыть тему
                             <i class="fas fa-arrow-right ml-2"></i>
                         </button>
@@ -174,7 +174,7 @@
                 </div>
 
                 <div class="topic-card scroll-reveal bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" data-subject="Физика" data-category="Физика" data-title="Законы Ньютона" onclick="openTopicModal(this)">
-                    <div class="relative h-48 overflow-hidden">
+                    <div class="relative h-32 md:h-48 overflow-hidden">
                         <img src="/images/Механика скай.jpg" 
                              alt="Физика" 
                              class="topic-card-image w-full h-full object-cover">
@@ -183,10 +183,10 @@
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-slate-700">Законы Ньютона</h3>
-                        <p class="text-gray-600 text-sm mb-4">Основы классической механики</p>
-                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2 text-slate-700">Законы Ньютона</h3>
+                        <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Основы классической механики</p>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-2 md:py-3 rounded-xl text-sm md:text-base font-semibold hover:shadow-lg transition-all transform hover:scale-105">
                             Открыть тему
                             <i class="fas fa-arrow-right ml-2"></i>
                         </button>
@@ -244,7 +244,7 @@
                 </div>
 
                 <div class="topic-card scroll-reveal bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" data-subject="История" data-category="История" data-title="Россия в XIX веке" onclick="openTopicModal(this)">
-                    <div class="relative h-48 overflow-hidden">
+                    <div class="relative h-32 md:h-48 overflow-hidden">
                         <img src="/images/история скай.jpg" 
                              alt="История" 
                              class="topic-card-image w-full h-full object-cover">
@@ -253,10 +253,10 @@
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-slate-700">Россия в XIX веке</h3>
-                        <p class="text-gray-600 text-sm mb-4">Россия в XIX-XX веках</p>
-                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2 text-slate-700">Россия в XIX веке</h3>
+                        <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Россия в XIX-XX веках</p>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-2 md:py-3 rounded-xl text-sm md:text-base font-semibold hover:shadow-lg transition-all transform hover:scale-105">
                             Открыть тему
                             <i class="fas fa-arrow-right ml-2"></i>
                         </button>
@@ -311,7 +311,7 @@
                 </div>
 
                 <div class="topic-card scroll-reveal bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" data-subject="Русский язык" data-category="Русский язык" data-title="Правописание Н/НН" onclick="openTopicModal(this)">
-                    <div class="relative h-48 overflow-hidden">
+                    <div class="relative h-32 md:h-48 overflow-hidden">
                         <img src="/images/русский скай.jpg" 
                              alt="Русский язык" 
                              class="topic-card-image w-full h-full object-cover">
@@ -320,10 +320,10 @@
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-slate-700">Правописание Н/НН</h3>
-                        <p class="text-gray-600 text-sm mb-4">Правила написания Н и НН</p>
-                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2 text-slate-700">Правописание Н/НН</h3>
+                        <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Правила написания Н и НН</p>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-2 md:py-3 rounded-xl text-sm md:text-base font-semibold hover:shadow-lg transition-all transform hover:scale-105">
                             Открыть тему
                             <i class="fas fa-arrow-right ml-2"></i>
                         </button>
@@ -379,7 +379,7 @@
                 </div>
 
                 <div class="topic-card scroll-reveal bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" data-subject="Химия" data-category="Химия" data-title="Углеводороды" onclick="openTopicModal(this)">
-                    <div class="relative h-48 overflow-hidden">
+                    <div class="relative h-32 md:h-48 overflow-hidden">
                         <img src="/images/химия скай.jpg" 
                              alt="Химия" 
                              class="topic-card-image w-full h-full object-cover">
@@ -388,10 +388,10 @@
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-slate-700">Углеводороды</h3>
-                        <p class="text-gray-600 text-sm mb-4">Органические соединения</p>
-                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2 text-slate-700">Углеводороды</h3>
+                        <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Органические соединения</p>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-2 md:py-3 rounded-xl text-sm md:text-base font-semibold hover:shadow-lg transition-all transform hover:scale-105">
                             Открыть тему
                             <i class="fas fa-arrow-right ml-2"></i>
                         </button>
@@ -447,7 +447,7 @@
                 </div>
 
                 <div class="topic-card scroll-reveal bg-white rounded-2xl overflow-hidden shadow-lg cursor-pointer" data-subject="Биология" data-category="Биология" data-title="Законы Менделя" onclick="openTopicModal(this)">
-                    <div class="relative h-48 overflow-hidden">
+                    <div class="relative h-32 md:h-48 overflow-hidden">
                         <img src="/images/биология скай.jpg" 
                              alt="Биология" 
                              class="topic-card-image w-full h-full object-cover">
@@ -456,10 +456,10 @@
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2 text-slate-700">Законы Менделя</h3>
-                        <p class="text-gray-600 text-sm mb-4">Основы генетики</p>
-                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-3 rounded-xl font-semibold hover:shadow-lg transition-all transform hover:scale-105">
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2 text-slate-700">Законы Менделя</h3>
+                        <p class="text-gray-600 text-xs md:text-sm mb-3 md:mb-4">Основы генетики</p>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-center py-2 md:py-3 rounded-xl text-sm md:text-base font-semibold hover:shadow-lg transition-all transform hover:scale-105">
                             Открыть тему
                             <i class="fas fa-arrow-right ml-2"></i>
                         </button>
@@ -617,8 +617,8 @@
                 modalBody.innerHTML = `
                     <div class="relative h-64 md:h-80 overflow-hidden rounded-2xl mb-8">
                         <img src="${imageSrc}" alt="${title}" class="w-full h-full object-cover">
-                        <div class="absolute top-4 left-4 z-10">
-                            <span class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">${category}</span>
+                        <div class="absolute top-2 md:top-4 left-2 md:left-4 z-10">
+                            <span class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-2 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm font-semibold shadow-lg">${category}</span>
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-800/60 to-transparent"></div>
                     </div>
@@ -690,4 +690,3 @@
     </script>
 </body>
 </html>
-
