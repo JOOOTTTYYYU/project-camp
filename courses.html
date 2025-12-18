@@ -878,21 +878,30 @@
         }
         
         function addInteractiveElements(html, topicTitle) {
-            return html.replace(/<div class="topic-block([^"]*)">/g, (match, classes) => {
-                return match + '<div class="interactive-buttons"><button onclick="markBlockUnderstood(this)" class="px-4 py-2 bg-green-100 hover:bg-green-200 text-green-700 rounded-lg text-sm transition-all"><i class="fas fa-check mr-1"></i> Понятно</button><button onclick="markBlockNeedHelp(this)" class="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg text-sm transition-all"><i class="fas fa-question-circle mr-1"></i> Нужна помощь</button></div>';
-            }).replace(/<div class="topic-block[^"]*border-t[^"]*">[\s\S]*?<h4[^>]*>Тренировка<\/h4>[\s\S]*?<div class="ml-6 space-y-1">([\s\S]*?)<\/div>/g, (match, trainingContent) => {
-                return match;
-            });
+            const buttons = '<div class="interactive-buttons mt-6 pt-4 border-t border-gray-200 flex gap-2 justify-start"><button onclick="markBlockUnderstood(this)" class="px-2 py-1 bg-green-100 hover:bg-green-200 text-green-700 rounded text-xs transition-all"><i class="fas fa-check mr-1"></i> Понятно</button><button onclick="markBlockNeedHelp(this)" class="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 rounded text-xs transition-all"><i class="fas fa-question-circle mr-1"></i> Нужна помощь</button></div>';
+            return html + buttons;
         }
         
         function markBlockUnderstood(btn) {
             btn.classList.add('opacity-50');
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Отмечено';
+            const buttonsContainer = btn.closest('.interactive-buttons');
+            if (buttonsContainer) {
+                const helpBtn = buttonsContainer.querySelector('button:last-child');
+                if (helpBtn) helpBtn.disabled = true;
+            }
         }
         
         function markBlockNeedHelp(btn) {
             alert('Мы поможем вам разобраться! Обратитесь к преподавателю или напишите в поддержку.');
+            btn.classList.add('opacity-50');
+            btn.disabled = true;
+            const buttonsContainer = btn.closest('.interactive-buttons');
+            if (buttonsContainer) {
+                const understoodBtn = buttonsContainer.querySelector('button:first-child');
+                if (understoodBtn) understoodBtn.disabled = true;
+            }
         }
         
         
